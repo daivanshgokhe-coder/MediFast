@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account - MediFast</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .auth-page {
+            min-height: calc(100vh - 75px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            background: linear-gradient(
+                135deg,
+                #f4faff,
+                #ffffff
+            );
+        }
+
+        .auth-card {
+            width: 100%;
+            max-width: 480px;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 22px;
+            border: 1px solid #e4ebf3;
+            box-shadow: 0 20px 60px rgba(25, 70, 110, 0.10);
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .auth-logo {
+            width: 55px;
+            height: 55px;
+            margin: 0 auto 15px;
+            border-radius: 15px;
+            background: #1687ff;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .auth-header h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .auth-header p {
+            color: #727d8f;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #273247;
+        }
+
+        .form-group input {
+            width: 100%;
+            height: 50px;
+            padding: 0 15px;
+            border: 1px solid #dce5f0;
+            border-radius: 10px;
+            outline: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: #1687ff;
+            box-shadow: 0 0 0 3px rgba(22, 135, 255, 0.10);
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper input {
+            padding-right: 75px;
+        }
+
+        .show-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: transparent;
+            color: #1687ff;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .register-submit {
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .auth-message {
+            display: none;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 9px;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .auth-message.error {
+            display: block;
+            background: #fff0f0;
+            color: #d63031;
+        }
+
+        .auth-message.success {
+            display: block;
+            background: #effff6;
+            color: #159957;
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 25px;
+            color: #727d8f;
+            font-size: 14px;
+        }
+
+        .auth-footer a {
+            color: #1687ff;
+            font-weight: 700;
+        }
+
+        .back-home {
+            display: block;
+            text-align: center;
+            margin-top: 18px;
+            color: #727d8f;
+            font-size: 13px;
+        }
+
+        .back-home:hover {
+            color: #1687ff;
+        }
+
+        .terms {
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+            margin: 15px 0;
+            color: #727d8f;
+            font-size: 12px;
+        }
+
+        .terms input {
+            margin-top: 3px;
+        }
+
+        @media (max-width: 500px) {
+            .auth-card {
+                padding: 28px 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="container nav-container">
+
+            <a href="index.html" class="logo">
+                <span class="logo-icon">⚕</span>
+                <span>Medi<span>Fast</span></span>
+            </a>
+
+            <nav class="navbar">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="products.html">
+                    Medicines
+                </a>
+
+                <a href="login.html">
+                    Login
+                </a>
+
+            </nav>
+
+            <a href="cart.html" class="cart-button">
+
+                🛒
+
+                <span>Cart</span>
+
+                <span
+                    id="cart-count"
+                    class="cart-count">
+                    0
+                </span>
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= REGISTER ================= -->
+
+    <main class="auth-page">
+
+        <div class="auth-card">
+
+            <div class="auth-header">
+
+                <div class="auth-logo">
+                    ⚕
+                </div>
+
+                <h1>Create Account</h1>
+
+                <p>
+                    Create your MediFast account
+                </p>
+
+            </div>
+
+
+            <!-- MESSAGE -->
+
+            <div
+                id="register-message"
+                class="auth-message">
+            </div>
+
+
+            <!-- REGISTER FORM -->
+
+            <form id="register-form">
+
+                <!-- NAME -->
+
+                <div class="form-group">
+
+                    <label for="register-name">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="register-name"
+                        placeholder="Enter your full name"
+                        required
+                        minlength="2"
+                    >
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="register-email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="register-email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- PHONE -->
+
+                <div class="form-group">
+
+                    <label for="register-phone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="register-phone"
+                        placeholder="Enter 10 digit mobile number"
+                        pattern="[0-9]{10}"
+                        maxlength="10"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="register-password">
+                        Password
+                    </label>
+
+                    <div class="password-wrapper">
+
+                        <input
+                            type="password"
+                            id="register-password"
+                            placeholder="Create a password"
+                            minlength="6"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="show-password"
+                            id="show-register-password">
+
+                            Show
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CONFIRM PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="register-confirm-password">
+                        Confirm Password
+                    </label>
+
+                    <div class="password-wrapper">
+
+                        <input
+                            type="password"
+                            id="register-confirm-password"
+                            placeholder="Confirm your password"
+                            minlength="6"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="show-password"
+                            id="show-confirm-password">
+
+                            Show
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TERMS -->
+
+                <label class="terms">
+
+                    <input
+                        type="checkbox"
+                        id="register-terms"
+                        required
+                    >
+
+                    <span>
+                        I agree to the MediFast terms and
+                        conditions.
+                    </span>
+
+                </label>
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    class="btn btn-primary register-submit">
+
+                    Create Account
+
+                </button>
+
+            </form>
+
+
+            <!-- LOGIN -->
+
+            <div class="auth-footer">
+
+                Already have an account?
+
+                <a href="login.html">
+                    Login
+                </a>
+
+            </div>
+
+
+            <a
+                href="index.html"
+                class="back-home">
+
+                ← Back to Home
+
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Product Details - MediFast</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css">
+
+
+    <style>
+
+        /* ========================================
+           PRODUCT DETAILS
+        ======================================== */
+
+        .product-details-page {
+
+            padding: 60px 0 80px;
+
+            background: #f7fbff;
+
+            min-height:
+                calc(100vh - 75px);
+
+        }
+
+
+        .details-wrapper {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 50px;
+
+            align-items: center;
+
+        }
+
+
+        /* Product image */
+
+        .details-image {
+
+            min-height: 430px;
+
+            background: white;
+
+            border: 1px solid #e4ebf3;
+
+            border-radius: 22px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 150px;
+
+            position: relative;
+
+        }
+
+
+        .details-category {
+
+            position: absolute;
+
+            top: 20px;
+
+            left: 20px;
+
+            background: #1687ff;
+
+            color: white;
+
+            padding: 7px 13px;
+
+            border-radius: 20px;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+        }
+
+
+        /* Details */
+
+        .details-content {
+
+            background: rgb(255, 255, 255);
+
+            padding: 35px;
+
+            border-radius: 22px;
+
+            border: 1px solid #1687ff;
+
+        }
+
+
+        .details-content .small-title {
+
+            color: #f6f7f7;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        .details-content h1 {
+
+            font-size: 38px;
+
+            margin: 10px 0;
+
+            color: #172033;
+
+        }
+
+
+        .details-description {
+
+            color: #727d8f;
+
+            line-height: 1.7;
+
+            margin: 15px 0;
+
+        }
+
+
+        .details-price {
+
+            font-size: 30px;
+
+            font-weight: 800;
+
+            color: #1687ff;
+
+            margin: 20px 0;
+
+        }
+
+
+        /* Quantity */
+
+        .quantity-area {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            margin: 20px 0;
+
+        }
+
+
+        .quantity-area label {
+
+            font-weight: 700;
+
+            color: #172033;
+
+        }
+
+
+        .quantity-controls {
+
+            display: flex;
+
+            align-items: center;
+
+            border: 1px solid #dce5f0;
+
+            border-radius: 9px;
+
+            overflow: hidden;
+
+        }
+
+
+        .quantity-controls button {
+
+            width: 40px;
+
+            height: 40px;
+
+            border: none;
+
+            background: #f1f7fd;
+
+            cursor: pointer;
+
+            font-size: 18px;
+
+        }
+
+
+        .quantity-controls input {
+
+            width: 50px;
+
+            height: 40px;
+
+            border: none;
+
+            text-align: center;
+
+            outline: none;
+
+            font-size: 15px;
+
+        }
+
+
+        /* Add cart */
+
+        .details-add-cart {
+
+            width: 100%;
+
+            border: none;
+
+            background: #1687ff;
+
+            color: white;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+
+        }
+
+
+        .details-add-cart:hover {
+
+            background: #0875e6;
+
+        }
+
+
+        .back-products {
+
+            display: inline-block;
+
+            margin-top: 18px;
+
+            color: #1687ff;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+        }
+
+
+        .back-products:hover {
+
+            text-decoration: underline;
+
+        }
+
+
+        /* Mobile */
+
+        @media (max-width: 800px) {
+
+            .details-wrapper {
+
+                grid-template-columns: 1fr;
+
+                gap: 25px;
+
+            }
+
+
+            .details-image {
+
+                min-height: 300px;
+
+                font-size: 110px;
+
+            }
+
+
+            .details-content h1 {
+
+                font-size: 30px;
+
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .product-details-page {
+
+                padding: 35px 0 50px;
+
+            }
+
+
+            .details-content {
+
+                padding: 25px 20px;
+
+            }
+
+
+            .details-image {
+
+                min-height: 250px;
+
+                font-size: 90px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="container nav-container">
+
+
+            <a
+                href="index.html"
+                class="logo">
+
+                <span class="logo-icon">
+                    ⚕
+                </span>
+
+                <span>
+                    Medi<span>Fast</span>
+                </span>
+
+            </a>
+
+
+            <nav class="navbar">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a
+                    href="products.html"
+                    class="active">
+
+                    Medicines
+
+                </a>
+
+                <a href="orders.html">
+                    My Orders
+                </a>
+
+                <a href="login.html">
+                    Login
+                </a>
+
+            </nav>
+
+
+            <a
+                href="cart.html"
+                class="cart-button">
+
+                🛒
+
+                <span>
+                    Cart
+                </span>
+
+                <span
+                    id="cart-count"
+                    class="cart-count">
+
+                    0
+
+                </span>
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- PRODUCT DETAILS -->
+
+    <main class="product-details-page">
+
+        <div class="container">
+
+
+            <div class="details-wrapper">
+
+
+                <!-- IMAGE -->
+
+                <div class="details-image">
+
+                    <span
+                        id="product-category"
+                        class="details-category">
+
+                        Category
+
+                    </span>
+
+
+                    <span id="product-image">
+                        💊
+                    </span>
+
+                </div>
+
+
+                <!-- INFORMATION -->
+
+                <div class="details-content">
+
+
+                    <span class="small-title">
+                        MEDIFAST PRODUCT
+                    </span>
+
+
+                    <h1 id="product-name">
+                        Product Name
+                    </h1>
+
+
+                    <p
+                        id="product-description"
+                        class="details-description">
+
+                        Product description
+
+                    </p>
+
+
+                    <div
+                        id="product-price"
+                        class="details-price">
+
+                        ₹0
+
+                    </div>
+
+
+                    <!-- QUANTITY -->
+
+                    <div class="quantity-area">
+
+                        <label>
+                            Quantity
+                        </label>
+
+
+                        <div
+                            class="quantity-controls">
+
+                            <button
+                                type="button"
+                                id="decrease-quantity">
+
+                                −
+
+                            </button>
+
+
+                            <input
+                                type="number"
+                                id="product-quantity"
+                                value="1"
+                                min="1"
+                                max="20">
+
+
+                            <button
+                                type="button"
+                                id="increase-quantity">
+
+                                +
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ADD CART -->
+
+                    <button
+                        type="button"
+                        id="add-to-cart"
+                        class="details-add-cart">
+
+                        🛒 Add to Cart
+
+                    </button>
+
+
+                    <a
+                        href="products.html"
+                        class="back-products">
+
+                        ← Back to Medicines
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+    
+    <script src="js/main.js"></script>
+    <script src="js/product-details.js"></script>
+    
+    </body>
+    </html>
+    
+
+

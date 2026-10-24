@@ -1,0 +1,793 @@
+
+/* ========================================
+   MEDIFAST HOME PAGE
+   Location: css/home.css
+======================================== */
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.home-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 72px;
+    gap: 30px;
+}
+
+
+.home-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #26344d;
+    text-decoration: none;
+    font-size: 21px;
+    white-space: nowrap;
+}
+
+
+.home-logo span {
+    font-size: 22px;
+}
+
+
+.home-logo strong {
+    font-weight: 800;
+}
+
+
+.home-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 22px;
+}
+
+
+.home-nav a {
+    position: relative;
+    color: #53627a;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: 0.2s ease;
+}
+
+
+.home-nav a:hover,
+.home-nav a.active {
+    color: #1687ff;
+}
+
+
+.home-login {
+    color: #1687ff !important;
+}
+
+
+.home-cart {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 6px;
+}
+
+
+.home-cart-count {
+    position: static !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 50% !important;
+    background: #1687ff !important;
+    color: #ffffff !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+}
+
+
+/* ========================================
+   HERO
+======================================== */
+
+.home-hero {
+    background: linear-gradient(
+        135deg,
+        #f4faff 0%,
+        #ffffff 55%,
+        #eef7ff 100%
+    );
+    padding: 85px 0;
+    overflow: hidden;
+}
+
+
+.home-hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    align-items: center;
+    gap: 70px;
+    min-height: 480px;
+}
+
+
+.home-hero-content {
+    max-width: 650px;
+}
+
+
+.home-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 14px;
+    margin-bottom: 22px;
+    border-radius: 30px;
+    background: #e8f4ff;
+    color: #1687ff;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+.home-hero h1 {
+    margin: 0;
+    color: #18243a;
+    font-size: clamp(46px, 5vw, 72px);
+    line-height: 1.05;
+    letter-spacing: -2px;
+}
+
+
+.home-hero h1 span {
+    display: block;
+    color: #1687ff;
+}
+
+
+.home-hero-content > p {
+    max-width: 600px;
+    margin: 25px 0 30px;
+    color: #5e6b80;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+
+.home-hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+
+.home-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    padding: 0 25px;
+    border-radius: 11px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+    transition: 0.2s ease;
+}
+
+
+.home-btn-primary {
+    background: #1687ff;
+    color: #ffffff;
+    box-shadow: 0 10px 25px rgba(22, 135, 255, 0.20);
+}
+
+
+.home-btn-primary:hover {
+    transform: translateY(-2px);
+}
+
+
+.home-btn-secondary {
+    background: #ffffff;
+    color: #26344d;
+    border: 1px solid #dce5f0;
+}
+
+
+.home-btn-secondary:hover {
+    border-color: #1687ff;
+    color: #1687ff;
+}
+
+
+.home-hero-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.home-medicine-card {
+    width: min(100%, 390px);
+    padding: 45px 35px;
+    text-align: center;
+    background: #ffffff;
+    border: 1px solid #e4edf7;
+    border-radius: 28px;
+    box-shadow: 0 25px 70px rgba(34, 78, 120, 0.12);
+}
+
+
+.home-medicine-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 25px;
+    border-radius: 28px;
+    background: #eaf5ff;
+    font-size: 55px;
+}
+
+
+.home-medicine-card h2 {
+    margin: 0 0 8px;
+    color: #18243a;
+    font-size: 30px;
+}
+
+
+.home-medicine-card > p {
+    margin: 0 0 28px;
+    color: #738097;
+}
+
+
+.home-card-items {
+    display: grid;
+    gap: 10px;
+    text-align: left;
+}
+
+
+.home-card-items div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    background: #f7faff;
+    border-radius: 10px;
+    color: #35445c;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+.home-card-items span {
+    margin-left: 2px;
+}
+
+
+/* ========================================
+   FEATURES
+======================================== */
+
+.home-features {
+    padding: 25px 0;
+    background: #ffffff;
+}
+
+
+.home-feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+
+.home-feature-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background: #ffffff;
+    border: 1px solid #e6edf5;
+    border-radius: 14px;
+}
+
+
+.home-feature-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    border-radius: 12px;
+    background: #eef7ff;
+    font-size: 22px;
+}
+
+
+.home-feature-card h3 {
+    margin: 0 0 4px;
+    color: #26344d;
+    font-size: 16px;
+}
+
+
+.home-feature-card p {
+    margin: 0;
+    color: #7a8699;
+    font-size: 13px;
+}
+
+
+/* ========================================
+   SECTION
+======================================== */
+
+.home-section {
+    padding: 85px 0;
+    background: #ffffff;
+}
+
+
+.home-section-title {
+    max-width: 650px;
+    margin: 0 auto 45px;
+    text-align: center;
+}
+
+
+.home-section-title > span {
+    color: #1687ff;
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+.home-section-title h2 {
+    margin: 8px 0 10px;
+    color: #18243a;
+    font-size: 34px;
+}
+
+
+.home-section-title p {
+    margin: 0;
+    color: #748096;
+    font-size: 15px;
+}
+
+
+/* ========================================
+   CATEGORIES
+======================================== */
+
+.home-category-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+
+.home-category-card {
+    padding: 30px 20px;
+    text-align: center;
+    text-decoration: none;
+    background: #ffffff;
+    border: 1px solid #e4ebf3;
+    border-radius: 18px;
+    transition: 0.25s ease;
+}
+
+
+.home-category-card:hover {
+    transform: translateY(-5px);
+    border-color: #b9dcff;
+    box-shadow: 0 15px 35px rgba(33, 84, 130, 0.10);
+}
+
+
+.home-category-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 18px;
+    border-radius: 18px;
+    background: #eef7ff;
+    font-size: 30px;
+}
+
+
+.home-category-card h3 {
+    margin: 0 0 7px;
+    color: #26344d;
+    font-size: 17px;
+}
+
+
+.home-category-card p {
+    margin: 0;
+    color: #7a8699;
+    font-size: 13px;
+}
+
+
+/* ========================================
+   HOW IT WORKS
+======================================== */
+
+.home-how-section {
+    padding: 85px 0;
+    background: #f7fbff;
+}
+
+
+.home-steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+
+.home-step-card {
+    position: relative;
+    padding: 30px 20px;
+    text-align: center;
+    background: #ffffff;
+    border: 1px solid #e4ebf3;
+    border-radius: 18px;
+}
+
+
+.home-step-number {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    background: #1687ff;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+.home-step-icon {
+    margin-bottom: 15px;
+    font-size: 32px;
+}
+
+
+.home-step-card h3 {
+    margin: 0 0 8px;
+    color: #26344d;
+}
+
+
+.home-step-card p {
+    margin: 0;
+    color: #7a8699;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* ========================================
+   CTA
+======================================== */
+
+.home-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    margin-top: 70px;
+    margin-bottom: 70px;
+    padding: 40px 45px;
+    background: linear-gradient(
+        135deg,
+        #1687ff,
+        #0d6ed5
+    );
+    border-radius: 22px;
+    box-shadow: 0 20px 50px rgba(22, 135, 255, 0.18);
+}
+
+
+.home-cta span {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+.home-cta h2 {
+    margin: 7px 0;
+    color: #ffffff;
+    font-size: 30px;
+}
+
+
+.home-cta p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+
+.home-cta .home-btn-primary {
+    flex-shrink: 0;
+    background: #ffffff;
+    color: #1687ff;
+    box-shadow: none;
+}
+
+
+/* ========================================
+   FOOTER
+======================================== */
+
+.home-footer {
+    background: #172236;
+    color: #ffffff;
+    padding-top: 55px;
+}
+
+
+.home-footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+    gap: 45px;
+    padding-bottom: 45px;
+}
+
+
+.home-footer-logo {
+    display: inline-block;
+    margin-bottom: 15px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+
+.home-footer p {
+    max-width: 300px;
+    margin: 0 0 8px;
+    color: #aeb8c8;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+
+.home-footer h3 {
+    margin: 0 0 18px;
+    font-size: 16px;
+}
+
+
+.home-footer a:not(.home-footer-logo) {
+    display: block;
+    margin-bottom: 10px;
+    color: #aeb8c8;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+
+.home-footer a:not(.home-footer-logo):hover {
+    color: #ffffff;
+}
+
+
+.home-footer-bottom {
+    padding: 18px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+.home-footer-bottom p {
+    max-width: none;
+    margin: 0;
+    text-align: center;
+    font-size: 13px;
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 992px) {
+
+    .home-navbar {
+        flex-direction: column;
+        padding: 15px 0;
+    }
+
+
+    .home-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px 18px;
+    }
+
+
+    .home-hero {
+        padding: 65px 0;
+    }
+
+
+    .home-hero-grid {
+        grid-template-columns: 1fr;
+        gap: 45px;
+        text-align: center;
+    }
+
+
+    .home-hero-content {
+        max-width: 750px;
+        margin: 0 auto;
+    }
+
+
+    .home-hero-actions {
+        justify-content: center;
+    }
+
+
+    .home-feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .home-category-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .home-steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .home-footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+    .home-nav {
+        gap: 10px 13px;
+    }
+
+
+    .home-nav a {
+        font-size: 13px;
+    }
+
+
+    .home-hero {
+        padding: 50px 0;
+    }
+
+
+    .home-hero h1 {
+        font-size: 42px;
+        letter-spacing: -1px;
+    }
+
+
+    .home-hero-content > p {
+        font-size: 16px;
+    }
+
+
+    .home-hero-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+
+    .home-btn {
+        width: 100%;
+    }
+
+
+    .home-medicine-card {
+        padding: 35px 22px;
+    }
+
+
+    .home-category-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+
+    .home-category-card {
+        padding: 22px 12px;
+    }
+
+
+    .home-steps-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .home-section {
+        padding: 60px 0;
+    }
+
+
+    .home-section-title h2 {
+        font-size: 28px;
+    }
+
+
+    .home-cta {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        padding: 30px 25px;
+    }
+
+
+    .home-cta h2 {
+        font-size: 25px;
+    }
+
+
+    .home-footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+}
+
+
+/* ========================================
+   SMALL MOBILE
+======================================== */
+
+@media (max-width: 400px) {
+
+    .home-category-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .home-hero h1 {
+        font-size: 36px;
+    }
+
+}

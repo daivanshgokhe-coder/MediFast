@@ -1,0 +1,348 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>MediFast - Admin Dashboard</title>
+
+    <!-- Main CSS -->
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <!-- Responsive CSS -->
+    <link
+        rel="stylesheet"
+        href="css/responsive.css"
+    >
+
+    <!-- Admin CSS -->
+    <link
+        rel="stylesheet"
+        href="css/admin.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ========================================
+         HEADER
+    ======================================== -->
+
+    <header class="header">
+
+        <div class="container">
+
+            <div class="logo">
+
+                <a href="index.html">
+                    <span>💊</span>
+                    MediFast
+                </a>
+
+            </div>
+
+
+            <nav class="navbar">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="products.html">
+                    Medicines
+                </a>
+
+                <a href="prescription.html">
+                    Prescription
+                </a>
+
+                <a href="orders.html">
+                    Orders
+                </a>
+
+                <a href="order-tracking.html">
+                    Track Order
+                </a>
+
+                <a href="cart.html">
+                    🛒 Cart
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- ========================================
+         ADMIN MAIN
+    ======================================== -->
+
+    <main class="admin-page">
+
+        <div class="container">
+
+
+            <!-- ADMIN HEADER -->
+
+            <div class="admin-header">
+
+                <div>
+
+                    <h1>
+                        Admin Dashboard
+                    </h1>
+
+                    <p>
+                        Manage MediFast orders and medicines.
+                    </p>
+
+                </div>
+
+
+                <button
+                    id="admin-logout"
+                    class="btn admin-logout"
+                    type="button"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+
+            <!-- MESSAGE -->
+
+            <div
+                id="admin-message"
+                class="admin-message"
+            ></div>
+
+
+            <!-- LOADING -->
+
+            <div
+                id="admin-loading"
+                class="admin-loading"
+            >
+                Loading Admin Dashboard...
+            </div>
+
+
+            <!-- ========================================
+                 STATISTICS
+            ======================================== -->
+
+            <section class="admin-stats">
+
+
+                <!-- TOTAL ORDERS -->
+
+                <div class="admin-stat">
+
+                    <div class="admin-stat-icon">
+                        📦
+                    </div>
+
+                    <span class="admin-stat-label">
+                        Total Orders
+                    </span>
+
+                    <div
+                        id="admin-total-orders"
+                        class="admin-stat-value"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+                <!-- REVENUE -->
+
+                <div class="admin-stat">
+
+                    <div class="admin-stat-icon">
+                        💰
+                    </div>
+
+                    <span class="admin-stat-label">
+                        Total Revenue
+                    </span>
+
+                    <div
+                        id="admin-total-revenue"
+                        class="admin-stat-value"
+                    >
+                        ₹0
+                    </div>
+
+                </div>
+
+
+                <!-- MEDICINES -->
+
+                <div class="admin-stat">
+
+                    <div class="admin-stat-icon">
+                        💊
+                    </div>
+
+                    <span class="admin-stat-label">
+                        Medicines
+                    </span>
+
+                    <div
+                        id="admin-total-medicines"
+                        class="admin-stat-value"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+                <!-- ACTIVE ORDERS -->
+
+                <div class="admin-stat">
+
+                    <div class="admin-stat-icon">
+                        🚚
+                    </div>
+
+                    <span class="admin-stat-label">
+                        Active Orders
+                    </span>
+
+                    <div
+                        id="admin-pending-orders"
+                        class="admin-stat-value"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+            <!-- ========================================
+                 RECENT ORDERS
+            ======================================== -->
+
+            <section class="admin-section">
+
+                <div class="admin-section-header">
+
+                    <div>
+
+                        <h2>
+                            Recent Orders
+                        </h2>
+
+                        <p>
+                            Manage customer orders.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div id="admin-orders">
+
+                    <div class="admin-empty">
+                        Loading orders...
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ========================================
+                 MEDICINES
+            ======================================== -->
+
+            <section class="admin-section">
+
+                <div class="admin-section-header">
+
+                    <div>
+
+                        <h2>
+                            Medicines
+                        </h2>
+
+                        <p>
+                            Manage medicines available in MediFast.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="admin-medicines"
+                    class="admin-medicine-grid"
+                >
+
+                    <div class="admin-empty">
+                        Loading medicines...
+                    </div>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- ========================================
+         FOOTER
+    ======================================== -->
+
+    <footer class="footer">
+
+        <div class="container">
+
+            <p>
+                © 2026 MediFast — Admin Dashboard
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ========================================
+         JAVASCRIPT
+    ======================================== -->
+
+    <script src="js/main.js"></script>
+
+    <script src="js/admin.js"></script>
+
+
+</body>
+
+</html>

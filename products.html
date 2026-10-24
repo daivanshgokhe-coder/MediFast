@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Medicines - MediFast</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* ========================================
+           MEDIFAST PRODUCTS PAGE
+        ======================================== */
+
+        .products-page {
+            padding: 55px 0 80px;
+            background: #f7fbff;
+            min-height: calc(100vh - 75px);
+        }
+
+        /* Products Header */
+        .products-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .products-header span {
+            color: #1687ff;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+        }
+
+        .products-header h1 {
+            font-size: 42px;
+            margin: 8px 0;
+        }
+
+        .products-header p {
+            color: #727d8f;
+            margin: 0;
+        }
+
+        /* Search + Category */
+        .product-tools {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            flex: 1;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            height: 52px;
+            padding: 0 18px 0 48px;
+            border: 1px solid #dce5f0;
+            border-radius: 12px;
+            outline: none;
+            background: white;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .search-box input:focus {
+            border-color: #1687ff;
+            box-shadow: 0 0 0 3px rgba(22, 135, 255, 0.10);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 17px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #7b8798;
+            pointer-events: none;
+        }
+
+        .category-filter {
+            width: 210px;
+            height: 52px;
+            padding: 0 15px;
+            border: 1px solid #dce5f0;
+            border-radius: 12px;
+            background: white;
+            outline: none;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+
+        .category-filter:focus {
+            border-color: #1687ff;
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        /* Product Card */
+        .product-card {
+            background: white;
+            border: 1px solid #e4ebf3;
+            border-radius: 18px;
+            overflow: hidden;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            border-color: #b9dcff;
+            box-shadow: 0 18px 40px rgba(25, 70, 110, 0.10);
+        }
+
+        /* Product Image */
+        .product-image {
+            height: 190px;
+            background: #eef8ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 75px;
+            position: relative;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 5px 9px;
+            border-radius: 20px;
+            background: #1687ff;
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: capitalize;
+        }
+
+        /* Product Information */
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-category {
+            color: #1687ff;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        .product-info h3 {
+            font-size: 17px;
+            margin: 5px 0;
+        }
+
+        .product-description {
+            color: #7a8495;
+            font-size: 12px;
+            min-height: 38px;
+            line-height: 1.5;
+            margin: 8px 0;
+        }
+
+        /* Price + Add Cart */
+        .product-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 17px;
+        }
+
+        .product-price {
+            font-size: 19px;
+            font-weight: 800;
+            color: #172033;
+        }
+
+        .add-cart-btn {
+            border: none;
+            background: #1687ff;
+            color: white;
+            padding: 10px 13px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 12px;
+            transition: 0.3s;
+        }
+
+        .add-cart-btn:hover {
+            background: #0875e6;
+            transform: translateY(-1px);
+        }
+
+        /* View Details */
+        .view-details-btn {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            padding: 9px;
+            border-radius: 8px;
+            background: #f1f7fd;
+            color: #1687ff;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .view-details-btn:hover {
+            background: #e5f3ff;
+        }
+
+        /* No Products */
+        .no-products {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+            color: #727d8f;
+        }
+
+        .no-products-icon {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        .no-products h3 {
+            margin-bottom: 8px;
+            color: #172033;
+        }
+
+        .no-products p {
+            margin: 0;
+        }
+
+        /* ========================================
+           TABLET
+        ======================================== */
+
+        @media (max-width: 1000px) {
+
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+        }
+
+        /* ========================================
+           SMALL TABLET / MOBILE
+        ======================================== */
+
+        @media (max-width: 750px) {
+
+            .products-page {
+                padding: 40px 0 60px;
+            }
+
+            .products-header {
+                margin-bottom: 28px;
+            }
+
+            .products-header h1 {
+                font-size: 36px;
+            }
+
+            .product-tools {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-box,
+            .category-filter {
+                width: 100%;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+
+            .product-info {
+                padding: 16px;
+            }
+
+            .product-image {
+                height: 165px;
+                font-size: 65px;
+            }
+
+        }
+
+        /* ========================================
+           MOBILE
+        ======================================== */
+
+        @media (max-width: 500px) {
+
+            .products-page {
+                padding: 35px 0 50px;
+            }
+
+            .products-header h1 {
+                font-size: 30px;
+            }
+
+            .products-header p {
+                font-size: 13px;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .product-image {
+                height: 180px;
+                font-size: 70px;
+            }
+
+            .product-info {
+                padding: 18px;
+            }
+
+            .product-info h3 {
+                font-size: 18px;
+            }
+
+            .product-description {
+                min-height: auto;
+            }
+
+        }
+
+        /* ========================================
+           VERY SMALL MOBILE
+        ======================================== */
+
+        @media (max-width: 360px) {
+
+            .products-header h1 {
+                font-size: 27px;
+            }
+
+            .product-bottom {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .product-price {
+                text-align: center;
+            }
+
+            .add-cart-btn {
+                width: 100%;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========================================
+         HEADER
+    ======================================== -->
+
+    <header class="header">
+
+        <div class="container nav-container">
+
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <span class="logo-icon">⚕</span>
+                <span>Medi<span>Fast</span></span>
+            </a>
+
+            <!-- Navigation -->
+            <nav class="navbar">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="products.html" class="active">
+                    Medicines
+                </a>
+
+                <a href="orders.html">
+                    My Orders
+                </a>
+
+                <a href="login.html">
+                    Login
+                </a>
+
+            </nav>
+
+            <!-- Cart -->
+            <a href="cart.html" class="cart-button">
+
+                🛒
+
+                <span>
+                    Cart
+                </span>
+
+                <span
+                    id="cart-count"
+                    class="cart-count">
+                    0
+                </span>
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- ========================================
+         PRODUCTS PAGE
+    ======================================== -->
+
+    <main class="products-page">
+
+        <div class="container">
+
+            <!-- Page Heading -->
+            <div class="products-header">
+
+                <span>
+                    MEDIFAST STORE
+                </span>
+
+                <h1>
+                    Medicines & Healthcare
+                </h1>
+
+                <p>
+                    Find the healthcare products you need.
+                </p>
+
+            </div>
+
+
+            <!-- ========================================
+                 SEARCH AND FILTER
+            ======================================== -->
+
+            <div class="product-tools">
+
+                <!-- Search -->
+                <div class="search-box">
+
+                    <span class="search-icon">
+                        🔍
+                    </span>
+
+                    <input
+                        type="text"
+                        id="product-search"
+                        placeholder="Search medicines..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <!-- Category -->
+                <select
+                    id="category-filter"
+                    class="category-filter">
+
+                    <option value="all">
+                        All Categories
+                    </option>
+
+                    <option value="medicine">
+                        Medicines
+                    </option>
+
+                    <option value="vitamins">
+                        Vitamins
+                    </option>
+
+                    <option value="personal-care">
+                        Personal Care
+                    </option>
+
+                    <option value="first-aid">
+                        First Aid
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ========================================
+                 PRODUCT GRID
+            ======================================== -->
+
+            <!-- IMPORTANT:
+                 products.js looks for "products-grid"
+            -->
+            <div
+                id="products-grid"
+                class="product-grid">
+            </div>
+
+
+            <!-- ========================================
+                 NO PRODUCTS MESSAGE
+            ======================================== -->
+
+            <div
+                id="no-products"
+                class="no-products">
+
+                <div class="no-products-icon">
+                    🔍
+                </div>
+
+                <h3>
+                    No products found
+                </h3>
+
+                <p>
+                    Try another medicine name or category.
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- ========================================
+         JAVASCRIPT
+    ======================================== -->
+
+<script src="js/main.js"></script>
+<script src="js/products.js"></script>
+
+</body>
+</html>
+

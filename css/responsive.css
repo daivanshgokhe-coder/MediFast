@@ -1,0 +1,792 @@
+/* =====================================================
+   MEDIFAST RESPONSIVE DESIGN
+   Desktop → Tablet → Mobile
+   ===================================================== */
+
+
+/* =====================================================
+   GLOBAL RESPONSIVE SAFETY
+   ===================================================== */
+
+   * {
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+}
+
+
+/* =====================================================
+   LARGE TABLET - 992px
+   ===================================================== */
+
+@media (max-width: 992px) {
+
+    /* GLOBAL */
+
+    .container {
+        width: 92%;
+    }
+
+
+    /* HEADER */
+
+    .header .container {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .navbar {
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .navbar a {
+        white-space: nowrap;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        padding: 55px 0;
+    }
+
+    .hero-content {
+        gap: 30px;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+
+    /* CATEGORIES */
+
+    .categories-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+
+    /* PRODUCTS */
+
+    .medicine-grid,
+    .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+
+    /* WHY MEDIFAST */
+
+    .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    /* HOW IT WORKS */
+
+    .steps {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    /* CART */
+
+    .cart-container,
+    .cart-layout {
+        gap: 25px;
+    }
+
+
+    /* CHECKOUT */
+
+    .checkout-container,
+    .checkout-layout {
+        gap: 25px;
+    }
+
+
+    /* PRODUCT DETAILS */
+
+    .product-details-grid {
+        gap: 30px;
+    }
+
+
+    /* ADMIN */
+
+    .admin-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .admin-table {
+        min-width: 750px;
+    }
+
+    .table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+}
+
+
+/* =====================================================
+   TABLET / MOBILE - 768px
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+    /* =================================================
+       HEADER
+    ================================================= */
+
+    .header {
+        padding: 12px 0;
+    }
+
+    .header .container {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .logo {
+        margin-bottom: 3px;
+    }
+
+    .navbar {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .navbar a {
+        font-size: 13px;
+        padding: 7px 9px;
+    }
+
+
+    /* =================================================
+       HERO
+    ================================================= */
+
+    .hero {
+        padding: 50px 0;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 25px;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+        line-height: 1.2;
+    }
+
+    .hero p {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .hero-image {
+        margin-top: 10px;
+    }
+
+
+    /* =================================================
+       HERO FEATURES
+    ================================================= */
+
+    .hero-features {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+
+    /* =================================================
+       CATEGORIES
+    ================================================= */
+
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+
+    /* =================================================
+       PRODUCTS
+    ================================================= */
+
+    .medicine-grid,
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
+
+    .medicine-card,
+    .product-card {
+        width: 100%;
+    }
+
+
+    /* =================================================
+       WHY SECTION
+    ================================================= */
+
+    .why-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+
+    /* =================================================
+       HOW IT WORKS
+    ================================================= */
+
+    .steps {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+
+    /* =================================================
+       CTA
+    ================================================= */
+
+    .cta {
+        padding: 45px 20px;
+    }
+
+
+    /* =================================================
+       SEARCH
+    ================================================= */
+
+    .search-container {
+        gap: 10px;
+    }
+
+
+    /* =================================================
+       CART
+    ================================================= */
+
+    .cart-container,
+    .cart-layout {
+        grid-template-columns: 1fr !important;
+    }
+
+    .cart-summary {
+        width: 100%;
+    }
+
+
+    /* =================================================
+       CHECKOUT
+    ================================================= */
+
+    .checkout-container,
+    .checkout-layout {
+        grid-template-columns: 1fr !important;
+    }
+
+    .checkout-form,
+    .order-summary {
+        width: 100%;
+    }
+
+
+    /* =================================================
+       PRODUCT DETAILS
+    ================================================= */
+
+    .product-details-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* =================================================
+       FORMS
+    ================================================= */
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* =================================================
+       ADMIN
+    ================================================= */
+
+    .admin-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .admin-card {
+        width: 100%;
+    }
+
+    .table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .admin-table {
+        min-width: 750px;
+    }
+
+
+    /* =================================================
+       FOOTER
+    ================================================= */
+
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE - 576px
+   ===================================================== */
+
+@media (max-width: 576px) {
+
+    /* =================================================
+       GLOBAL
+    ================================================= */
+
+    .container {
+        width: 94%;
+    }
+
+    section {
+        padding: 40px 0;
+    }
+
+
+    /* =================================================
+       HEADER
+    ================================================= */
+
+    .header .container {
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .logo-icon {
+        font-size: 25px;
+    }
+
+    .navbar {
+        width: 100%;
+        gap: 5px;
+    }
+
+    .navbar a {
+        font-size: 12px;
+        padding: 6px 7px;
+    }
+
+
+    /* =================================================
+       HERO
+    ================================================= */
+
+    .hero {
+        padding: 40px 0;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+        line-height: 1.2;
+    }
+
+    .hero p {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 280px;
+    }
+
+
+    /* =================================================
+       HERO FEATURES
+    ================================================= */
+
+    .hero-features {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+
+    /* =================================================
+       SECTION TITLES
+    ================================================= */
+
+    .section-title {
+        font-size: 26px;
+        line-height: 1.3;
+    }
+
+
+    /* =================================================
+       CATEGORIES
+    ================================================= */
+
+    .categories-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .category-card {
+        padding: 18px 10px;
+    }
+
+
+    /* =================================================
+       PRODUCTS
+    ================================================= */
+
+    .medicine-grid,
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .medicine-card,
+    .product-card {
+        width: 100%;
+    }
+
+
+    /* =================================================
+       SEARCH
+    ================================================= */
+
+    .search-container {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .search-container input,
+    .search-container select {
+        width: 100%;
+        min-height: 44px;
+    }
+
+
+    /* =================================================
+       CART
+    ================================================= */
+
+    .cart-container,
+    .cart-layout {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+    }
+
+    .cart-summary {
+        width: 100%;
+    }
+
+    .cart-item {
+        width: 100%;
+    }
+
+
+    /* =================================================
+       CHECKOUT
+    ================================================= */
+
+    .checkout-container,
+    .checkout-layout {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+    }
+
+    .checkout-form,
+    .order-summary {
+        width: 100%;
+    }
+
+
+    /* =================================================
+       PRODUCT DETAILS
+    ================================================= */
+
+    .product-details-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .product-details-image {
+        width: 100%;
+        text-align: center;
+    }
+
+
+    /* =================================================
+       AUTH
+    ================================================= */
+
+    .auth-container {
+        width: 94%;
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    .auth-card {
+        width: 100%;
+        padding: 25px 18px;
+    }
+
+    .auth-card input,
+    .auth-card select {
+        width: 100%;
+    }
+
+
+    /* =================================================
+       PRESCRIPTION
+    ================================================= */
+
+    .prescription-container {
+        width: 100%;
+    }
+
+    .prescription-form {
+        width: 100%;
+    }
+
+    .prescription-item {
+        width: 100%;
+    }
+
+
+    /* =================================================
+       ORDERS
+    ================================================= */
+
+    .order-card {
+        width: 100%;
+        overflow: hidden;
+    }
+
+
+    /* =================================================
+       ADMIN
+    ================================================= */
+
+    .admin-stats {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .admin-stat-card {
+        width: 100%;
+    }
+
+    .admin-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .admin-refresh-btn {
+        width: 100%;
+    }
+
+    .table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .admin-table {
+        min-width: 700px;
+    }
+
+
+    /* =================================================
+       BUTTONS
+    ================================================= */
+
+    .btn {
+        max-width: 100%;
+    }
+
+
+    /* =================================================
+       FOOTER
+    ================================================= */
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 25px;
+    }
+
+    .footer-links {
+        margin-top: 15px;
+    }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE - 400px
+   ===================================================== */
+
+@media (max-width: 400px) {
+
+    /* HEADER */
+
+    .navbar {
+        gap: 3px;
+    }
+
+    .navbar a {
+        font-size: 11px;
+        padding: 5px;
+    }
+
+
+    /* HERO */
+
+    .hero h1 {
+        font-size: 26px;
+    }
+
+    .hero p {
+        font-size: 13px;
+    }
+
+
+    /* CATEGORIES */
+
+    .categories-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* SECTION */
+
+    .section-title {
+        font-size: 23px;
+    }
+
+
+    /* PRODUCTS */
+
+    .medicine-grid,
+    .products-grid {
+        gap: 12px;
+    }
+
+
+    /* AUTH */
+
+    .auth-container {
+        width: 96%;
+        padding: 10px;
+    }
+
+    .auth-card {
+        padding: 20px 15px;
+    }
+
+
+    /* ADMIN */
+
+    .admin-table {
+        min-width: 650px;
+    }
+
+}
+
+
+/* =====================================================
+   EXTRA SMALL MOBILE - 360px
+   ===================================================== */
+
+@media (max-width: 360px) {
+
+    .container {
+        width: 95%;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .logo-icon {
+        font-size: 22px;
+    }
+
+    .navbar a {
+        font-size: 10px;
+        padding: 4px;
+    }
+
+    .hero {
+        padding: 30px 0;
+    }
+
+    .hero h1 {
+        font-size: 23px;
+    }
+
+    .hero p {
+        font-size: 12px;
+    }
+
+    .section-title {
+        font-size: 21px;
+    }
+
+    .category-card {
+        padding: 15px 8px;
+    }
+
+}

@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Checkout - MediFast</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css">
+
+
+    <style>
+
+        /* ========================================
+           CHECKOUT PAGE
+        ======================================== */
+
+        .checkout-page {
+            padding: 55px 0 80px;
+            background: #f7fbff;
+            min-height: calc(100vh - 75px);
+        }
+
+
+        .checkout-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+
+        .checkout-header span {
+            color: #1687ff;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+        }
+
+
+        .checkout-header h1 {
+            font-size: 42px;
+            margin: 8px 0;
+        }
+
+
+        .checkout-header p {
+            color: #727d8f;
+            margin: 0;
+        }
+
+
+        /* ========================================
+           LAYOUT
+        ======================================== */
+
+        .checkout-layout {
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 25px;
+            align-items: start;
+        }
+
+
+        .checkout-form-box,
+        .checkout-summary {
+            background: white;
+            border: 1px solid #e4ebf3;
+            border-radius: 18px;
+        }
+
+
+        .checkout-form-box {
+            padding: 30px;
+        }
+
+
+        .checkout-summary {
+            padding: 25px;
+            position: sticky;
+            top: 20px;
+        }
+
+
+        .checkout-form-box h2,
+        .checkout-summary h2 {
+            margin: 0 0 22px;
+            font-size: 21px;
+            color: #172033;
+        }
+
+
+        /* ========================================
+           FORM
+        ======================================== */
+
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+
+        .form-section-title {
+            color: #1687ff;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 18px;
+        }
+
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+
+        .form-group label {
+            font-size: 13px;
+            font-weight: 700;
+            color: #172033;
+        }
+
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+
+            width: 100%;
+            box-sizing: border-box;
+
+            border: 1px solid #dce5f0;
+
+            border-radius: 10px;
+
+            padding: 12px 14px;
+
+            outline: none;
+
+            background: white;
+
+            font-family: inherit;
+
+            font-size: 13px;
+        }
+
+
+        .form-group input,
+        .form-group select {
+            height: 46px;
+        }
+
+
+        .form-group textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+
+            border-color: #1687ff;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(22, 135, 255, 0.10);
+        }
+
+
+        /* ========================================
+           PAYMENT
+        ======================================== */
+
+        .payment-options {
+            display: grid;
+            gap: 12px;
+        }
+
+
+        .payment-option {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            border: 1px solid #dce5f0;
+
+            border-radius: 10px;
+
+            padding: 14px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .payment-option:hover {
+
+            border-color: #1687ff;
+
+            background: #f7fbff;
+        }
+
+
+        .payment-option input {
+            accent-color: #1687ff;
+        }
+
+
+        .payment-option-content strong {
+
+            display: block;
+
+            color: #172033;
+
+            font-size: 13px;
+        }
+
+
+        .payment-option-content span {
+
+            color: #727d8f;
+
+            font-size: 11px;
+        }
+
+
+        /* ========================================
+           SUMMARY
+        ======================================== */
+
+        .summary-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding: 10px 0;
+
+            color: #727d8f;
+
+            font-size: 14px;
+        }
+
+
+        .summary-row strong {
+            color: #172033;
+        }
+
+
+        .summary-divider {
+
+            height: 1px;
+
+            background: #e9eef5;
+
+            margin: 10px 0;
+        }
+
+
+        .summary-total {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding-top: 12px;
+
+            font-size: 18px;
+
+            font-weight: 800;
+
+            color: #172033;
+        }
+
+
+        .summary-total span:last-child {
+
+            color: #1687ff;
+
+            font-size: 23px;
+        }
+
+
+        .summary-items {
+
+            margin-bottom: 20px;
+
+            max-height: 240px;
+
+            overflow-y: auto;
+        }
+
+
+        .summary-item {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            padding: 10px 0;
+
+            border-bottom: 1px solid #edf1f6;
+        }
+
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+
+        .summary-item-name {
+
+            font-size: 12px;
+
+            color: #172033;
+        }
+
+
+        .summary-item-qty {
+
+            color: #727d8f;
+
+            font-size: 11px;
+        }
+
+
+        /* ========================================
+           PLACE ORDER
+        ======================================== */
+
+        .place-order-btn {
+
+            width: 100%;
+
+            border: none;
+
+            background: #1687ff;
+
+            color: white;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            margin-top: 20px;
+        }
+
+
+        .place-order-btn:hover {
+            background: #0875e6;
+        }
+
+
+        .place-order-btn:disabled {
+
+            opacity: 0.6;
+
+            cursor: not-allowed;
+        }
+
+
+        .back-cart {
+
+            display: block;
+
+            text-align: center;
+
+            margin-top: 13px;
+
+            color: #1687ff;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            text-decoration: none;
+        }
+
+
+        /* ========================================
+           MESSAGE
+        ======================================== */
+
+        .checkout-message {
+
+            display: none;
+
+            padding: 12px;
+
+            margin-bottom: 20px;
+
+            border-radius: 9px;
+
+            font-size: 13px;
+        }
+
+
+        .checkout-message.error {
+
+            display: block;
+
+            background: #fff0f0;
+
+            color: #d33;
+        }
+
+
+        .checkout-message.success {
+
+            display: block;
+
+            background: #effaf2;
+
+            color: #188038;
+        }
+
+
+        /* ========================================
+           RESPONSIVE
+        ======================================== */
+
+        @media (max-width: 900px) {
+
+            .checkout-layout {
+                grid-template-columns: 1fr;
+            }
+
+
+            .checkout-summary {
+                position: static;
+            }
+        }
+
+
+        @media (max-width: 600px) {
+
+            .checkout-page {
+                padding: 40px 0 60px;
+            }
+
+
+            .checkout-header h1 {
+                font-size: 32px;
+            }
+
+
+            .checkout-form-box {
+                padding: 22px 18px;
+            }
+
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .form-group.full-width {
+                grid-column: auto;
+            }
+
+
+            .checkout-summary {
+                padding: 20px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ========================================
+         HEADER
+    ======================================== -->
+
+    <header class="header">
+
+        <div class="container nav-container">
+
+
+            <a
+                href="index.html"
+                class="logo">
+
+                <span class="logo-icon">
+                    ⚕
+                </span>
+
+                <span>
+                    Medi<span>Fast</span>
+                </span>
+
+            </a>
+
+
+            <nav class="navbar">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="products.html">
+                    Medicines
+                </a>
+
+                <a href="orders.html">
+                    My Orders
+                </a>
+
+                <a href="login.html">
+                    Login
+                </a>
+
+            </nav>
+
+
+            <a
+                href="cart.html"
+                class="cart-button">
+
+                🛒
+
+                <span>
+                    Cart
+                </span>
+
+                <span
+                    id="cart-count"
+                    class="cart-count">
+                    0
+                </span>
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ========================================
+         CHECKOUT
+    ======================================== -->
+
+    <main class="checkout-page">
+
+        <div class="container">
+
+
+            <!-- HEADER -->
+
+            <div class="checkout-header">
+
+                <span>
+                    MEDIFAST CHECKOUT
+                </span>
+
+                <h1>
+                    Complete Your Order
+                </h1>
+
+                <p>
+                    Enter your delivery details and place your order.
+                </p>
+
+            </div>
+
+
+
+            <div class="checkout-layout">
+
+
+                <!-- ========================================
+                     FORM
+                ======================================== -->
+
+                <section class="checkout-form-box">
+
+
+                    <h2>
+                        Delivery Information
+                    </h2>
+
+
+                    <!-- MESSAGE -->
+
+                    <div
+                        id="checkout-message"
+                        class="checkout-message">
+                    </div>
+
+
+
+                    <form id="checkout-form">
+
+
+                        <!-- ========================================
+                             PERSONAL DETAILS
+                        ======================================== -->
+
+                        <div class="form-section">
+
+                            <div class="form-section-title">
+                                Personal Details
+                            </div>
+
+
+                            <div class="form-grid">
+
+
+                                <!-- NAME -->
+
+                                <div class="form-group">
+
+                                    <label for="customer-name">
+                                        Full Name
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="customer-name"
+                                        placeholder="Enter your full name"
+                                        required>
+
+                                </div>
+
+
+                                <!-- PHONE -->
+
+                                <div class="form-group">
+
+                                    <label for="customer-phone">
+                                        Phone Number
+                                    </label>
+
+                                    <input
+                                        type="tel"
+                                        id="customer-phone"
+                                        placeholder="Enter 10-digit mobile number"
+                                        maxlength="10"
+                                        inputmode="numeric"
+                                        required>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- ========================================
+                             DELIVERY ADDRESS
+                        ======================================== -->
+
+                        <div class="form-section">
+
+                            <div class="form-section-title">
+                                Delivery Address
+                            </div>
+
+
+                            <div class="form-grid">
+
+
+                                <!-- ADDRESS -->
+
+                                <div class="form-group full-width">
+
+                                    <label for="address">
+                                        Address
+                                    </label>
+
+                                    <textarea
+                                        id="address"
+                                        placeholder="House No, Street, Area, Landmark"
+                                        required></textarea>
+
+                                </div>
+
+
+
+                                <!-- STATE -->
+
+                                <div class="form-group">
+
+                                    <label for="state">
+                                        State
+                                    </label>
+
+
+                                    <select
+                                        id="state"
+                                        required>
+
+                                        <option value="">
+                                            Select State
+                                        </option>
+
+                                        <option value="Andhra Pradesh">
+                                            Andhra Pradesh
+                                        </option>
+
+                                        <option value="Arunachal Pradesh">
+                                            Arunachal Pradesh
+                                        </option>
+
+                                        <option value="Assam">
+                                            Assam
+                                        </option>
+
+                                        <option value="Bihar">
+                                            Bihar
+                                        </option>
+
+                                        <option value="Chhattisgarh">
+                                            Chhattisgarh
+                                        </option>
+
+                                        <option value="Goa">
+                                            Goa
+                                        </option>
+
+                                        <option value="Gujarat">
+                                            Gujarat
+                                        </option>
+
+                                        <option value="Haryana">
+                                            Haryana
+                                        </option>
+
+                                        <option value="Himachal Pradesh">
+                                            Himachal Pradesh
+                                        </option>
+
+                                        <option value="Jharkhand">
+                                            Jharkhand
+                                        </option>
+
+                                        <option value="Karnataka">
+                                            Karnataka
+                                        </option>
+
+                                        <option value="Kerala">
+                                            Kerala
+                                        </option>
+
+                                        <option value="Madhya Pradesh">
+                                            Madhya Pradesh
+                                        </option>
+
+                                        <option value="Maharashtra">
+                                            Maharashtra
+                                        </option>
+
+                                        <option value="Manipur">
+                                            Manipur
+                                        </option>
+
+                                        <option value="Meghalaya">
+                                            Meghalaya
+                                        </option>
+
+                                        <option value="Mizoram">
+                                            Mizoram
+                                        </option>
+
+                                        <option value="Nagaland">
+                                            Nagaland
+                                        </option>
+
+                                        <option value="Odisha">
+                                            Odisha
+                                        </option>
+
+                                        <option value="Punjab">
+                                            Punjab
+                                        </option>
+
+                                        <option value="Rajasthan">
+                                            Rajasthan
+                                        </option>
+
+                                        <option value="Sikkim">
+                                            Sikkim
+                                        </option>
+
+                                        <option value="Tamil Nadu">
+                                            Tamil Nadu
+                                        </option>
+
+                                        <option value="Telangana">
+                                            Telangana
+                                        </option>
+
+                                        <option value="Tripura">
+                                            Tripura
+                                        </option>
+
+                                        <option value="Uttar Pradesh">
+                                            Uttar Pradesh
+                                        </option>
+
+                                        <option value="Uttarakhand">
+                                            Uttarakhand
+                                        </option>
+
+                                        <option value="West Bengal">
+                                            West Bengal
+                                        </option>
+
+                                        <option value="Delhi">
+                                            Delhi
+                                        </option>
+
+                                        <option value="Jammu and Kashmir">
+                                            Jammu and Kashmir
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+
+
+                                <!-- CITY -->
+
+                                <div class="form-group">
+
+                                    <label for="city">
+                                        City
+                                    </label>
+
+
+                                    <select
+                                        id="city"
+                                        required>
+
+                                        <option value="">
+                                            Select City
+                                        </option>
+
+                                        <option value="Mumbai">
+                                            Mumbai
+                                        </option>
+
+                                        <option value="Pune">
+                                            Pune
+                                        </option>
+
+                                        <option value="Nagpur">
+                                            Nagpur
+                                        </option>
+
+                                        <option value="Nashik">
+                                            Nashik
+                                        </option>
+
+                                        <option value="Aurangabad">
+                                            Aurangabad
+                                        </option>
+
+                                        <option value="Thane">
+                                            Thane
+                                        </option>
+
+                                        <option value="Navi Mumbai">
+                                            Navi Mumbai
+                                        </option>
+
+                                        <option value="Amravati">
+                                            Amravati
+                                        </option>
+
+                                        <option value="Akola">
+                                            Akola
+                                        </option>
+
+                                        <option value="Solapur">
+                                            Solapur
+                                        </option>
+
+                                        <option value="Kolhapur">
+                                            Kolhapur
+                                        </option>
+
+                                        <option value="Ahmednagar">
+                                            Ahmednagar
+                                        </option>
+
+                                        <option value="Delhi">
+                                            Delhi
+                                        </option>
+
+                                        <option value="New Delhi">
+                                            New Delhi
+                                        </option>
+
+                                        <option value="Bengaluru">
+                                            Bengaluru
+                                        </option>
+
+                                        <option value="Hyderabad">
+                                            Hyderabad
+                                        </option>
+
+                                        <option value="Chennai">
+                                            Chennai
+                                        </option>
+
+                                        <option value="Kolkata">
+                                            Kolkata
+                                        </option>
+
+                                        <option value="Ahmedabad">
+                                            Ahmedabad
+                                        </option>
+
+                                        <option value="Jaipur">
+                                            Jaipur
+                                        </option>
+
+                                        <option value="Bhopal">
+                                            Bhopal
+                                        </option>
+
+                                        <option value="Indore">
+                                            Indore
+                                        </option>
+
+                                        <option value="Lucknow">
+                                            Lucknow
+                                        </option>
+
+                                        <option value="Patna">
+                                            Patna
+                                        </option>
+
+                                        <option value="Ranchi">
+                                            Ranchi
+                                        </option>
+
+                                        <option value="Surat">
+                                            Surat
+                                        </option>
+
+                                        <option value="Vadodara">
+                                            Vadodara
+                                        </option>
+
+                                        <option value="Raipur">
+                                            Raipur
+                                        </option>
+
+                                        <option value="Bhubaneswar">
+                                            Bhubaneswar
+                                        </option>
+
+                                        <option value="Chandigarh">
+                                            Chandigarh
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+
+
+                                <!-- PINCODE -->
+
+                                <div class="form-group">
+
+                                    <label for="pincode">
+                                        Pincode
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="pincode"
+                                        placeholder="Enter 6-digit pincode"
+                                        maxlength="6"
+                                        inputmode="numeric"
+                                        required>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- ========================================
+                             PAYMENT
+                        ======================================== -->
+
+                        <div class="form-section">
+
+                            <div class="form-section-title">
+                                Payment Method
+                            </div>
+
+
+                            <div class="payment-options">
+
+
+                                <!-- COD -->
+
+                                <label class="payment-option">
+
+                                    <input
+                                        type="radio"
+                                        name="payment"
+                                        value="COD"
+                                        checked>
+
+                                    <div class="payment-option-content">
+
+                                        <strong>
+                                            Cash on Delivery
+                                        </strong>
+
+                                        <span>
+                                            Pay when your order arrives.
+                                        </span>
+
+                                    </div>
+
+                                </label>
+
+
+
+                                <!-- UPI DEMO -->
+
+                                <label class="payment-option">
+
+                                    <input
+                                        type="radio"
+                                        name="payment"
+                                        value="UPI">
+
+                                    <div class="payment-option-content">
+
+                                        <strong>
+                                            UPI
+                                        </strong>
+
+                                        <span>
+                                            Demo payment option only.
+                                        </span>
+
+                                    </div>
+
+                                </label>
+
+
+
+                                <!-- CARD DEMO -->
+
+                                <label class="payment-option">
+
+                                    <input
+                                        type="radio"
+                                        name="payment"
+                                        value="Card">
+
+                                    <div class="payment-option-content">
+
+                                        <strong>
+                                            Debit / Credit Card
+                                        </strong>
+
+                                        <span>
+                                            Demo payment option only.
+                                        </span>
+
+                                    </div>
+
+                                </label>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- ========================================
+                             PLACE ORDER
+                        ======================================== -->
+
+                        <button
+                            type="submit"
+                            id="place-order-btn"
+                            class="place-order-btn">
+
+                            Place Order
+
+                        </button>
+
+                    </form>
+
+                </section>
+
+
+
+                <!-- ========================================
+                     ORDER SUMMARY
+                ======================================== -->
+
+                <aside class="checkout-summary">
+
+
+                    <h2>
+                        Order Summary
+                    </h2>
+
+
+                    <!-- ITEMS -->
+
+                    <div
+                        id="checkout-items"
+                        class="summary-items">
+                    </div>
+
+
+                    <!-- SUBTOTAL -->
+
+                    <div class="summary-row">
+
+                        <span>
+                            Subtotal
+                        </span>
+
+                        <strong id="checkout-subtotal">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+
+                    <!-- DELIVERY -->
+
+                    <div class="summary-row">
+
+                        <span>
+                            Delivery
+                        </span>
+
+                        <strong id="checkout-delivery">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-divider">
+                    </div>
+
+
+                    <!-- TOTAL -->
+
+                    <div class="summary-total">
+
+                        <span>
+                            Total
+                        </span>
+
+                        <span id="checkout-total">
+                            ₹0
+                        </span>
+
+                    </div>
+
+
+                    <!-- BACK TO CART -->
+
+                    <a
+                        href="cart.html"
+                        class="back-cart">
+
+                        ← Back to Cart
+
+                    </a>
+
+                </aside>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- ========================================
+         JAVASCRIPT
+    ======================================== -->
+
+    <script src="js/main.js"></script>
+    <script src="js/checkout.js"></script>
+
+</body>
+
+</html>

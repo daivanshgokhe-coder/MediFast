@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prescription - MediFast</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .prescription-page {
+            padding: 45px 5%;
+            min-height: 70vh;
+        }
+
+        .prescription-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .prescription-title h1 {
+            font-size: 34px;
+            margin-bottom: 8px;
+        }
+
+        .prescription-title p {
+            color: #666;
+        }
+
+        .prescription-container {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .prescription-card {
+            background: white;
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+        }
+
+        .prescription-card h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .info-box {
+            background: #f1f8f6;
+            border-left: 4px solid #0a9b72;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 25px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 7px;
+            font-size: 15px;
+            box-sizing: border-box;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .upload-area {
+            border: 2px dashed #0a9b72;
+            border-radius: 10px;
+            padding: 35px 20px;
+            text-align: center;
+            background: #f8fffc;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .upload-area:hover {
+            background: #effbf7;
+        }
+
+        .upload-icon {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        .upload-area h3 {
+            margin-bottom: 8px;
+        }
+
+        .upload-area p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .selected-file {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            background: #e5f7f1;
+            color: #087c5c;
+            border-radius: 7px;
+            font-weight: 600;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background: #0a9b72;
+            color: white;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background: #087c5c;
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .prescription-message {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 7px;
+        }
+
+        .message.success {
+            display: block;
+            background: #e5f7f1;
+            color: #087c5c;
+        }
+
+        .message.error {
+            display: block;
+            background: #ffecec;
+            color: #d32f2f;
+        }
+
+        .uploaded-prescriptions {
+            margin-top: 25px;
+        }
+
+        .prescription-record {
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            background: #fff;
+        }
+
+        .prescription-record-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .prescription-record-header h3 {
+            margin: 0;
+        }
+
+        .prescription-info p {
+            margin: 8px 0;
+            color: #555;
+        }
+
+        .prescription-status {
+            display: inline-block;
+            padding: 7px 13px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .status-submitted {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-under-review {
+            background: #cfe8ff;
+            color: #075985;
+        }
+
+        .status-approved {
+            background: #d1f7e8;
+            color: #087c5c;
+        }
+
+        .status-rejected {
+            background: #ffe0e0;
+            color: #c62828;
+        }
+
+        .status-unknown {
+            background: #eeeeee;
+            color: #555;
+        }
+
+        .view-prescription-btn {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 9px 15px;
+            background: #0a9b72;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .view-prescription-btn:hover {
+            background: #087c5c;
+        }
+
+        .admin-status-box {
+            margin-top: 18px;
+            padding: 15px;
+            background: #f7f7f7;
+            border-radius: 9px;
+            border: 1px solid #e5e5e5;
+        }
+
+        .admin-status-box label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .admin-status-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .admin-status-row select {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            background: white;
+        }
+
+        .update-status-btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 7px;
+            background: #222;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .update-status-btn:hover {
+            background: #000;
+        }
+
+        .update-status-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .no-prescriptions {
+            text-align: center;
+            padding: 30px 15px;
+            color: #777;
+        }
+
+        .loading-prescriptions {
+            text-align: center;
+            padding: 25px;
+            color: #777;
+        }
+
+        @media (max-width: 600px) {
+
+            .prescription-card {
+                padding: 20px;
+            }
+
+            .prescription-record-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .admin-status-row {
+                flex-direction: column;
+            }
+
+            .update-status-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <header class="header">
+
+        <div class="container">
+
+            <nav class="navbar">
+
+                <a href="index.html" class="logo">
+                    💊 MediFast
+                </a>
+
+                <div class="nav-links">
+
+                    <a href="index.html">
+                        Home
+                    </a>
+
+                    <a href="products.html">
+                        Medicines
+                    </a>
+
+                    <a href="prescription.html">
+                        Prescription
+                    </a>
+
+                    <a href="orders.html">
+                        My Orders
+                    </a>
+
+                    <a href="login.html">
+                        Login
+                    </a>
+
+                    <a href="cart.html">
+                        🛒 Cart
+                        <span id="cart-count">0</span>
+                    </a>
+
+                </div>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- Prescription Page -->
+
+    <main class="prescription-page">
+
+        <div class="prescription-title">
+
+            <h1>📄 Upload Prescription</h1>
+
+            <p>
+                Upload your prescription for medicine verification
+            </p>
+
+        </div>
+
+
+        <div class="prescription-container">
+
+            <!-- Upload Card -->
+
+            <div class="prescription-card">
+
+                <h2>
+                    Prescription Details
+                </h2>
+
+                <div class="info-box">
+
+                    <strong>Important:</strong>
+
+                    Please upload a clear prescription
+                    issued by a qualified doctor.
+                    Supported demo formats are JPG,
+                    PNG and PDF.
+
+                </div>
+
+
+                <form id="prescription-form">
+
+                    <!-- Doctor Name -->
+
+                    <div class="form-group">
+
+                        <label for="doctor-name">
+                            Doctor Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="doctor-name"
+                            placeholder="Enter doctor's name"
+                            required>
+
+                    </div>
+
+
+                    <!-- Upload -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Prescription File
+                        </label>
+
+                        <label
+                            for="prescription-file"
+                            class="upload-area">
+
+                            <div class="upload-icon">
+                                📤
+                            </div>
+
+                            <h3>
+                                Click to Upload Prescription
+                            </h3>
+
+                            <p>
+                                JPG, PNG or PDF — Maximum 5 MB
+                            </p>
+
+                            <input
+                                type="file"
+                                id="prescription-file"
+                                class="file-input"
+                                accept=".jpg,.jpeg,.png,.pdf"
+                                required>
+
+                        </label>
+
+
+                        <div
+                            id="selected-file"
+                            class="selected-file">
+                        </div>
+
+                    </div>
+
+
+                    <!-- Notes -->
+
+                    <div class="form-group">
+
+                        <label for="prescription-notes">
+                            Additional Notes
+                        </label>
+
+                        <textarea
+                            id="prescription-notes"
+                            placeholder="Enter any additional information..."></textarea>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        id="submit-prescription-btn"
+                        class="submit-btn">
+
+                        📤 Submit Prescription
+
+                    </button>
+
+
+                    <div
+                        id="prescription-message"
+                        class="prescription-message">
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <!-- Submitted Prescriptions -->
+
+            <div class="prescription-card">
+
+                <h2>
+                    📋 Submitted Prescriptions
+                </h2>
+
+                <!-- IMPORTANT:
+                     JS also uses this exact ID -->
+                <div
+                    id="uploaded-prescriptions"
+                    class="uploaded-prescriptions">
+
+                    <div class="loading-prescriptions">
+                        Loading prescriptions...
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+
+    <footer class="footer">
+
+        <div class="container">
+
+            <p>
+                © 2026 MediFast. All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script src="js/main.js"></script>
+    <script src="js/prescription.js"></script>
+
+</body>
+
+</html>
