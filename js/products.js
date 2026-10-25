@@ -4,7 +4,9 @@
 // js/products.js
 // ========================================
 
-const PRODUCTS_API = "http://localhost:5000/api/medicines";
+
+const PRODUCTS_API = "https://medifast-oanf.onrender.com/api/medicines";
+
 
 let products = [];
 

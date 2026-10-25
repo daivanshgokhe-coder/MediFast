@@ -4,7 +4,8 @@
 // ==========================================
 
 const PRESCRIPTION_API =
-    "http://localhost:5000/api/prescriptions";
+    "https://medifast-oanf.onrender.com/api/orders";
+
 
 
 // ==========================================

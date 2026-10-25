@@ -1,4 +1,4 @@
-const CHECKOUT_API = "http://localhost:5000/api";
+const CHECKOUT_API = "https://medifast-oanf.onrender.com/api";
 
 let cart = [];
 

@@ -1,8 +1,7 @@
 // ========================================
 // MediFast - Order Tracking
 // ========================================
-
-const TRACKING_API = "http://localhost:5000/api/orders";
+const TRACKING_API = "https://medifast-oanf.onrender.com/api/orders";
 
 
 // ========================================

@@ -2,14 +2,12 @@
 // MediFast - Admin Dashboard
 // ========================================
 
-const ADMIN_ORDERS_API =
-    "http://localhost:5000/api/orders/admin/all";
+const ADMIN_ORDERS_API = "https://medifast-oanf.onrender.com/api/orders/admin/all";
 
-const ORDERS_API =
-    "http://localhost:5000/api/orders";
+const ORDERS_API = "https://medifast-oanf.onrender.com/api/orders";
 
-const MEDICINES_API =
-    "http://localhost:5000/api/medicines";
+
+const MEDICINES_API = "https://medifast-oanf.onrender.com/api/medicines";
 
 
 // ========================================
