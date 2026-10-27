@@ -3,16 +3,19 @@
 // js/products.js
 // ========================================
 
-const PRODUCTS_API = "https://medifast-oanf.onrender.com/api/medicines";
+const PRODUCTS_API =
+    "https://medifast-oanf.onrender.com/api/medicines";
 
 let products = [];
 
 // ========================================
 // Load Medicines
 // ========================================
+
 async function loadProducts() {
 
-    const grid = document.getElementById("products-grid");
+    const grid =
+        document.getElementById("products-grid");
 
     if (!grid) return;
 
@@ -24,22 +27,26 @@ async function loadProducts() {
 
     try {
 
-        const response = await fetch(PRODUCTS_API, {
-            method: "GET",
-            cache: "no-store"
-        });
+        const response =
+            await fetch(PRODUCTS_API, {
+                method: "GET",
+                cache: "no-store"
+            });
 
-        const data = await response.json();
+        const data =
+            await response.json();
 
         if (!response.ok) {
             throw new Error(
-                data.message || "Unable to load medicines"
+                data.message ||
+                "Unable to load medicines"
             );
         }
 
-        products = Array.isArray(data.medicines)
-            ? data.medicines
-            : [];
+        products =
+            Array.isArray(data.medicines)
+                ? data.medicines
+                : [];
 
         window.products = products;
 
@@ -47,7 +54,10 @@ async function loadProducts() {
 
     } catch (error) {
 
-        console.error("Products Error:", error);
+        console.error(
+            "Products Error:",
+            error
+        );
 
         grid.innerHTML = `
             <div class="message error">
@@ -62,6 +72,7 @@ async function loadProducts() {
 // ========================================
 // Display Medicines
 // ========================================
+
 function displayProducts(list) {
 
     const grid =
@@ -80,118 +91,85 @@ function displayProducts(list) {
         return;
     }
 
-    grid.innerHTML = list.map(function (product) {
+    grid.innerHTML =
+        list.map(function (product) {
 
-        const id = product._id;
+            const id =
+                product._id;
 
-        return `
-            <div class="product-card">
+            const price =
+                Number(product.price || 0)
+                    .toLocaleString("en-IN");
 
-                <div class="product-image">
-                    <div class="image-placeholder">
-                        ${product.emoji || "💊"}
+            const category =
+                product.category ||
+                "Medicine";
+
+            const name =
+                product.name ||
+                "Medicine";
+
+            const description =
+                product.description ||
+                "No description available.";
+
+            const emoji =
+                product.emoji ||
+                "💊";
+
+            return `
+                <div class="product-card">
+
+                    <!-- Product Image -->
+                    <div class="product-image">
+                        <div class="image-placeholder">
+                            ${emoji}
+                        </div>
                     </div>
+
+                    <!-- Product Information -->
+                    <div class="product-info">
+
+                        <span class="product-category">
+                            ${category}
+                        </span>
+
+                        <h3>
+                            ${name}
+                        </h3>
+
+                        <p>
+                            ${description}
+                        </p>
+
+                        <!-- Price + View Details -->
+                        <div class="product-bottom">
+
+                            <strong>
+                                ₹${price}
+                            </strong>
+
+                            <button
+                                type="button"
+                                class="view-details-btn"
+                                data-id="${id}"
+                            >
+                                View Details
+                            </button>
+
+                        </div>
+
+                    </div>
+
                 </div>
+            `;
 
-                <div class="product-info">
-
-                    <span class="product-category">
-                        ${product.category || "Medicine"}
-                    </span>
-
-                    <h3>
-                        ${product.name || "Medicine"}
-                    </h3>
-
-                    <p>
-                        ${product.description || ""}
-                    </p>
-
-                    <div class="product-bottom">
-
-                        <strong>
-                            ₹${Number(product.price || 0).toLocaleString("en-IN")}
-                        </strong>
-
-                    </div>
-
-                    <div class="product-actions">
-
-                        <button
-                            type="button"
-                            class="btn btn-primary add-to-cart-btn"
-                            data-id="${id}"
-                        >
-                            Add to Cart
-                        </button>
-
-                        <button
-                            type="button"
-                            class="btn btn-secondary view-details-btn"
-                            data-id="${id}"
-                        >
-                            View Details
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-        `;
-
-    }).join("");
+        }).join("");
 
     // ========================================
-    // Add To Cart Buttons
+    // View Details
     // ========================================
-    document
-        .querySelectorAll(".add-to-cart-btn")
-        .forEach(function (button) {
 
-            button.addEventListener(
-                "click",
-                function () {
-
-                    const id =
-                        button.dataset.id;
-
-                    if (!id) {
-
-                        console.error(
-                            "Medicine ID missing"
-                        );
-
-                        return;
-                    }
-
-                    const product =
-                        products.find(function (item) {
-
-                            return String(item._id) ===
-                                String(id);
-
-                        });
-
-                    if (!product) {
-
-                        console.error(
-                            "Medicine not found:",
-                            id
-                        );
-
-                        return;
-                    }
-
-                    addToCart(product);
-                }
-            );
-
-        });
-
-    // ========================================
-    // View Details Buttons
-    // ========================================
     document
         .querySelectorAll(".view-details-btn")
         .forEach(function (button) {
@@ -221,20 +199,24 @@ function displayProducts(list) {
 }
 
 // ========================================
-// ADD TO CART
+// UPDATE CART COUNT
 // ========================================
-function addToCart(product) {
+
+function updateCartCount() {
 
     let cart = [];
 
     try {
 
         const savedCart =
-            localStorage.getItem("medifastCart");
+            localStorage.getItem(
+                "medifastCart"
+            );
 
-        cart = savedCart
-            ? JSON.parse(savedCart)
-            : [];
+        cart =
+            savedCart
+                ? JSON.parse(savedCart)
+                : [];
 
         if (!Array.isArray(cart)) {
             cart = [];
@@ -250,114 +232,59 @@ function addToCart(product) {
         cart = [];
     }
 
-    const existingItem =
-        cart.find(function (item) {
-
-            return String(item.id) ===
-                String(product._id);
-
-        });
-
-    if (existingItem) {
-
-        existingItem.quantity =
-            Number(existingItem.quantity || 1) + 1;
-
-    } else {
-
-        cart.push({
-
-            id: product._id,
-
-            name: product.name,
-
-            price: Number(product.price || 0),
-
-            quantity: 1,
-
-            image: product.image || "",
-
-            emoji: product.emoji || "💊",
-
-            category: product.category || "Medicine"
-
-        });
-
-    }
-
-    localStorage.setItem(
-        "medifastCart",
-        JSON.stringify(cart)
-    );
-
-    updateCartCount();
-
-    showCartMessage(
-        `${product.name} added to cart.`
-    );
-}
-
-// ========================================
-// UPDATE CART COUNT
-// ========================================
-function updateCartCount() {
-
-    let cart = [];
-
-    try {
-
-        const savedCart =
-            localStorage.getItem("medifastCart");
-
-        cart = savedCart
-            ? JSON.parse(savedCart)
-            : [];
-
-        if (!Array.isArray(cart)) {
-            cart = [];
-        }
-
-    } catch (error) {
-
-        cart = [];
-    }
-
     const count =
-        cart.reduce(function (total, item) {
+        cart.reduce(
+            function (total, item) {
 
-            return total +
-                Number(item.quantity || 0);
+                return total +
+                    Number(
+                        item.quantity || 0
+                    );
 
-        }, 0);
+            },
+            0
+        );
 
     document
-        .querySelectorAll(".cart-count")
-        .forEach(function (element) {
+        .querySelectorAll(
+            ".cart-count"
+        )
+        .forEach(
+            function (element) {
 
-            element.textContent = count;
-
-        });
+                element.textContent =
+                    count;
+            }
+        );
 
     const cartCount =
-        document.getElementById("cart-count");
+        document.getElementById(
+            "cart-count"
+        );
 
     if (cartCount) {
-        cartCount.textContent = count;
+        cartCount.textContent =
+            count;
     }
 }
 
 // ========================================
 // CART MESSAGE
 // ========================================
+
 function showCartMessage(message) {
 
     let messageElement =
-        document.getElementById("cart-message");
+        document.getElementById(
+            "cart-message"
+        );
 
     if (!messageElement) {
 
         messageElement =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
         messageElement.id =
             "cart-message";
@@ -376,17 +303,21 @@ function showCartMessage(message) {
     messageElement.style.display =
         "block";
 
-    setTimeout(function () {
+    setTimeout(
+        function () {
 
-        messageElement.style.display =
-            "none";
+            messageElement.style.display =
+                "none";
 
-    }, 2000);
+        },
+        2000
+    );
 }
 
 // ========================================
 // SEARCH
 // ========================================
+
 function searchProducts() {
 
     const input =
@@ -409,27 +340,35 @@ function searchProducts() {
     }
 
     const filtered =
-        products.filter(function (product) {
+        products.filter(
+            function (product) {
 
-            return (
-                String(product.name || "")
-                    .toLowerCase()
-                    .includes(text)
+                return (
+                    String(
+                        product.name || ""
+                    )
+                        .toLowerCase()
+                        .includes(text)
 
-                ||
+                    ||
 
-                String(product.category || "")
-                    .toLowerCase()
-                    .includes(text)
+                    String(
+                        product.category || ""
+                    )
+                        .toLowerCase()
+                        .includes(text)
 
-                ||
+                    ||
 
-                String(product.description || "")
-                    .toLowerCase()
-                    .includes(text)
-            );
+                    String(
+                        product.description || ""
+                    )
+                        .toLowerCase()
+                        .includes(text)
+                );
 
-        });
+            }
+        );
 
     displayProducts(filtered);
 }
@@ -437,6 +376,7 @@ function searchProducts() {
 // ========================================
 // CATEGORY FILTER
 // ========================================
+
 function filterProducts(category) {
 
     if (
@@ -450,14 +390,18 @@ function filterProducts(category) {
     }
 
     const filtered =
-        products.filter(function (product) {
+        products.filter(
+            function (product) {
 
-            return String(
-                product.category || ""
-            ).toLowerCase() ===
-            String(category).toLowerCase();
+                return String(
+                    product.category || ""
+                )
+                    .toLowerCase() ===
+                    String(category)
+                        .toLowerCase();
 
-        });
+            }
+        );
 
     displayProducts(filtered);
 }
@@ -465,6 +409,7 @@ function filterProducts(category) {
 // ========================================
 // PAGE LOAD
 // ========================================
+
 document.addEventListener(
     "DOMContentLoaded",
     function () {
