@@ -1,12 +1,9 @@
-
 // ========================================
 // MediFast - Products
 // js/products.js
 // ========================================
 
-
 const PRODUCTS_API = "https://medifast-oanf.onrender.com/api/medicines";
-
 
 let products = [];
 
@@ -14,6 +11,7 @@ let products = [];
 // Load Medicines
 // ========================================
 async function loadProducts() {
+
     const grid = document.getElementById("products-grid");
 
     if (!grid) return;
@@ -25,6 +23,7 @@ async function loadProducts() {
     `;
 
     try {
+
         const response = await fetch(PRODUCTS_API, {
             method: "GET",
             cache: "no-store"
@@ -48,10 +47,7 @@ async function loadProducts() {
 
     } catch (error) {
 
-        console.error(
-            "Products Error:",
-            error
-        );
+        console.error("Products Error:", error);
 
         grid.innerHTML = `
             <div class="message error">
@@ -69,9 +65,7 @@ async function loadProducts() {
 function displayProducts(list) {
 
     const grid =
-        document.getElementById(
-            "products-grid"
-        );
+        document.getElementById("products-grid");
 
     if (!grid) return;
 
@@ -88,8 +82,7 @@ function displayProducts(list) {
 
     grid.innerHTML = list.map(function (product) {
 
-        const id =
-            product._id;
+        const id = product._id;
 
         return `
             <div class="product-card">
@@ -120,9 +113,21 @@ function displayProducts(list) {
                             ₹${Number(product.price || 0).toLocaleString("en-IN")}
                         </strong>
 
+                    </div>
+
+                    <div class="product-actions">
+
                         <button
                             type="button"
-                            class="btn btn-primary view-details-btn"
+                            class="btn btn-primary add-to-cart-btn"
+                            data-id="${id}"
+                        >
+                            Add to Cart
+                        </button>
+
+                        <button
+                            type="button"
+                            class="btn btn-secondary view-details-btn"
                             data-id="${id}"
                         >
                             View Details
@@ -137,7 +142,56 @@ function displayProducts(list) {
 
     }).join("");
 
-    // View Details buttons
+    // ========================================
+    // Add To Cart Buttons
+    // ========================================
+    document
+        .querySelectorAll(".add-to-cart-btn")
+        .forEach(function (button) {
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    const id =
+                        button.dataset.id;
+
+                    if (!id) {
+
+                        console.error(
+                            "Medicine ID missing"
+                        );
+
+                        return;
+                    }
+
+                    const product =
+                        products.find(function (item) {
+
+                            return String(item._id) ===
+                                String(id);
+
+                        });
+
+                    if (!product) {
+
+                        console.error(
+                            "Medicine not found:",
+                            id
+                        );
+
+                        return;
+                    }
+
+                    addToCart(product);
+                }
+            );
+
+        });
+
+    // ========================================
+    // View Details Buttons
+    // ========================================
     document
         .querySelectorAll(".view-details-btn")
         .forEach(function (button) {
@@ -150,9 +204,11 @@ function displayProducts(list) {
                         button.dataset.id;
 
                     if (!id) {
+
                         console.error(
                             "Medicine ID missing"
                         );
+
                         return;
                     }
 
@@ -165,7 +221,171 @@ function displayProducts(list) {
 }
 
 // ========================================
-// Search
+// ADD TO CART
+// ========================================
+function addToCart(product) {
+
+    let cart = [];
+
+    try {
+
+        const savedCart =
+            localStorage.getItem("medifastCart");
+
+        cart = savedCart
+            ? JSON.parse(savedCart)
+            : [];
+
+        if (!Array.isArray(cart)) {
+            cart = [];
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Cart read error:",
+            error
+        );
+
+        cart = [];
+    }
+
+    const existingItem =
+        cart.find(function (item) {
+
+            return String(item.id) ===
+                String(product._id);
+
+        });
+
+    if (existingItem) {
+
+        existingItem.quantity =
+            Number(existingItem.quantity || 1) + 1;
+
+    } else {
+
+        cart.push({
+
+            id: product._id,
+
+            name: product.name,
+
+            price: Number(product.price || 0),
+
+            quantity: 1,
+
+            image: product.image || "",
+
+            emoji: product.emoji || "💊",
+
+            category: product.category || "Medicine"
+
+        });
+
+    }
+
+    localStorage.setItem(
+        "medifastCart",
+        JSON.stringify(cart)
+    );
+
+    updateCartCount();
+
+    showCartMessage(
+        `${product.name} added to cart.`
+    );
+}
+
+// ========================================
+// UPDATE CART COUNT
+// ========================================
+function updateCartCount() {
+
+    let cart = [];
+
+    try {
+
+        const savedCart =
+            localStorage.getItem("medifastCart");
+
+        cart = savedCart
+            ? JSON.parse(savedCart)
+            : [];
+
+        if (!Array.isArray(cart)) {
+            cart = [];
+        }
+
+    } catch (error) {
+
+        cart = [];
+    }
+
+    const count =
+        cart.reduce(function (total, item) {
+
+            return total +
+                Number(item.quantity || 0);
+
+        }, 0);
+
+    document
+        .querySelectorAll(".cart-count")
+        .forEach(function (element) {
+
+            element.textContent = count;
+
+        });
+
+    const cartCount =
+        document.getElementById("cart-count");
+
+    if (cartCount) {
+        cartCount.textContent = count;
+    }
+}
+
+// ========================================
+// CART MESSAGE
+// ========================================
+function showCartMessage(message) {
+
+    let messageElement =
+        document.getElementById("cart-message");
+
+    if (!messageElement) {
+
+        messageElement =
+            document.createElement("div");
+
+        messageElement.id =
+            "cart-message";
+
+        messageElement.className =
+            "message success";
+
+        document.body.appendChild(
+            messageElement
+        );
+    }
+
+    messageElement.textContent =
+        message;
+
+    messageElement.style.display =
+        "block";
+
+    setTimeout(function () {
+
+        messageElement.style.display =
+            "none";
+
+    }, 2000);
+}
+
+// ========================================
+// SEARCH
 // ========================================
 function searchProducts() {
 
@@ -195,11 +415,15 @@ function searchProducts() {
                 String(product.name || "")
                     .toLowerCase()
                     .includes(text)
+
                 ||
+
                 String(product.category || "")
                     .toLowerCase()
                     .includes(text)
+
                 ||
+
                 String(product.description || "")
                     .toLowerCase()
                     .includes(text)
@@ -211,7 +435,7 @@ function searchProducts() {
 }
 
 // ========================================
-// Category Filter
+// CATEGORY FILTER
 // ========================================
 function filterProducts(category) {
 
@@ -219,7 +443,9 @@ function filterProducts(category) {
         !category ||
         category === "all"
     ) {
+
         displayProducts(products);
+
         return;
     }
 
@@ -237,13 +463,15 @@ function filterProducts(category) {
 }
 
 // ========================================
-// Page Load
+// PAGE LOAD
 // ========================================
 document.addEventListener(
     "DOMContentLoaded",
     function () {
 
         loadProducts();
+
+        updateCartCount();
 
         const search =
             document.getElementById(

@@ -4,8 +4,10 @@
 // File: js/product-details.js
 // ========================================
 
+
 const MEDICINES_API =
-    "http://localhost:5000/api/medicines";
+    "https://medifast-oanf.onrender.com/api/medicines";
+
 
 let currentMedicine = null;
 

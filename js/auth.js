@@ -3,7 +3,6 @@
 // MediFast - Authentication
 // Location: js/auth.js
 // ========================================
-
 const API_BASE_URL = "https://medifast-oanf.onrender.com/api";
 
 
